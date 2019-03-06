@@ -53,8 +53,7 @@ var bug = new Schema({
     title: { type: String, required: true },
     creator: { type: String, required: true } //The provided name for who reported the bug
     user: { type: String, required: true },
-    closedDate: { type: String, required: true },
-
+    closedDate: { type: String, required: true }
 }, { timestamps: true })
 ```
 
@@ -65,7 +64,7 @@ var note = new Schema({
     bug: { type: ObjectId, ref: 'Bug' required: true },
     creator: { type: String, required: true } //The provided name for who made the note
     user: { type: String, required: true },
-    flagged: { type: String, enum: ["pending", "complete"] }
+    flagged: { type: String, enum: ["pending", "completed", "rejected"] }
 }, { timestamps: true })
 ```
 
