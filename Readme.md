@@ -76,7 +76,7 @@ Get
 
 `/bugs/:id`: returns a single bug with all it's data
 
-`/bugs/:id/comments`: returns all comments for a given bug id
+`/bugs/:id/comments`: returns all notes for a given bug id
 
 Post
 
