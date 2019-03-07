@@ -48,7 +48,7 @@ The details view provides some additional information about the bug, as well as 
 ### Bug Schema
 ```Javascript
 var bug = new Schema({
-    closed: { type: Boolean, required: true, default: true },
+    closed: { type: Boolean, required: true, default: false },
     description: { type: String, required: true },
     title: { type: String, required: true },
     creator: { type: String, required: true } //The provided name for who reported the bug
@@ -78,7 +78,7 @@ Get
 
 `/bugs/:id`: returns a single bug with all it's data
 
-`/bugs/:id/comments`: returns all comments for a given bug id
+`/bugs/:id/notes`: returns all comments for a given bug id
 
 Post
 
