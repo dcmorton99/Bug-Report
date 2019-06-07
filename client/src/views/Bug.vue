@@ -7,16 +7,16 @@
 </template>
 
 <script>
-  import Bugs from '@/components/Bugs.vue'
+  import BugDetails from '@/components/BugDetails.vue'
 
 
   export default {
-    name: 'home',
+    name: 'bug',
     mounted() {
-      this.$store.dispatch('getBugs');
+      this.$store.dispatch('getBug');
     },
     components: {
-      Bugs,
+      BugDetails,
     }
   }
 </script>

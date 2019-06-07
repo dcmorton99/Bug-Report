@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from './router';
+
 
 const _api = axios.create({
   baseURL: 'https://bcw-sandbox.herokuapp.com/api/danielletest/bugs'
@@ -20,22 +20,38 @@ export default new Vuex.Store({
       state.bugs = data
     },
 
+    setBug(state, id) {
+      state.bug = id
+    }
   },
+
   actions: {
     async getBugs({ commit, dispatch }) {
       try {
         let res = await _api.get('')
         commit('setBugs', res.data.results)
-      } catch (err) { console.error(err) }
+      }
+      catch (err) { console.error(err) }
     },
+
+    async getBug({ commit, dispatch }, id) {
+      try {
+        let res = await _api.get('id')
+        commit('setBug', res.data.results)
+      }
+      catch (err) { console.error(err) }
+    },
+
     createBug({ commit, dispatch }, payload) {
       try {
         _api.post('', payload)
           .then(res => {
-            console.log(res)
-            dispatch('getDays')
+            dispatch('getBugs')
           })
-      } catch (err) { console.error(err) }
-    }
+      }
+      catch (err) { console.error(err) }
+    },
+
+
   }
 })
