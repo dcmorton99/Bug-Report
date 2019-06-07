@@ -110,7 +110,7 @@ Delete
 ### Visualization
 - At least 2 supported routes
     - Home shows all bugs
-    - Details displays the details of a bug and its Notes
+    - BugDetails displays the details of a bug and its Notes
 - Notes can only be added to a bug from the details view
 - Styling Indication on main page that bug is closed (color, strike-through, etc.)
 - No option to 'add note' once bug is closed
@@ -118,5 +118,4 @@ Delete
 ### Functionality
 - Bugs can be created and marked complete
 - Notes can be added and removed from a bug
-- Bugs can be filtered/sorted by at least 1 status type ie. show open bugs / sort by date
 - Utilize the Route Params to retain bug details page on refresh
