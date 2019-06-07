@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1>Look at What's Bugging Everyone:</h1>
+        <bugs-list />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <bug />
+      </div>
+    </div>
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import Bug from '@/components/Bug.vue'
+  import BugsList from '@/components/BugsList.vue'
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  export default {
+    name: 'home',
+    mounted() {
+      this.$store.dispatch('getBugs');
+    },
+    components: {
+      BugsList,
+      Bug
+
+    }
   }
-}
 </script>
