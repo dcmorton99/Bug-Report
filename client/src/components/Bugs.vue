@@ -1,16 +1,16 @@
 g<template>
   <div class="row bugs">
     <div class="col-12">
-      <ul>
-        <li v-for="bug in bugs" :key="bug._id">
-          {{bug.title}} {{bug.description}} {{bug.creator}}
+      <ul class="list-group">
+        <li class="list-group-item" v-for="bug in bugs" :key="bug._id">
+          {{bug.title}} {{bug.description}} <strong>user:</strong>{{bug.creator}}
         </li>
       </ul>
     </div>
 
     <div class="col-12">
+      <h2>What's bugging you?</h2>
       <form @submit.prevent="createBug">
-        <label for="formGroupExampleInput">What's Bugging You?</label>
         <input type="text" class="form-control" v-model="newBug.title" placeholder="Title your bug issue">
         <input type="text" class="form-control" v-model="newBug.description"
           placeholder="Please describe the bug the best you can">
