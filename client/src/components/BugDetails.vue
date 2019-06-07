@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">{{bug.description}}</h5>
         <h5 class="card-text">{{bug.creator}}</h5>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <button class="btn btn-primary" @click="addNote">Go somewhere</button>
       </div>
     </div>
   </div>
@@ -16,12 +16,21 @@
 <script>
   export default {
     name: "BugDetails",
+    props: ["id"],
     mounted() {
-      this.$store.dispatch('getBug');
+      this.$store.dispatch('getBugById', this.id);
+    },
+    data() {
+      return {};
     },
     computed: {
       days() {
-        return this.$store.state.bugs;
+        return this.$store.state.bug;
+      }
+    },
+    methods: {
+      addNote() {
+
       }
     }
   };

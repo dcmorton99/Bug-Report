@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
 
-    <bugs />
+    <bug-details />
 
   </div>
 </template>

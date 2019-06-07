@@ -3,7 +3,7 @@ g<template>
     <div class="col-12">
       <ul>
         <li v-for="bug in bugs" :key="bug._id">
-          {{bugs.title}} {{bug.description}} {{bug.creator}}
+          {{bug.title}} {{bug.description}} {{bug.creator}}
         </li>
       </ul>
     </div>

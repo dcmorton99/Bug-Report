@@ -34,7 +34,7 @@ export default new Vuex.Store({
       catch (err) { console.error(err) }
     },
 
-    async getBug({ commit, dispatch }, id) {
+    async getBugById({ commit, dispatch }, id) {
       try {
         let res = await _api.get('id')
         commit('setBug', res.data.results)
