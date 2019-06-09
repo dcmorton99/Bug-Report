@@ -1,17 +1,23 @@
 <template>
   <div class="home container-fluid">
-    <div class="row">
-      <div class="col">
-        <h2>Reported Bugs:</h2>
-      </div>
+    <div class="row align content center">
+      <h1>Reported Bugs</h1>
+      <table class="table table-hover">
+        <tbody>
+          <bugs-list />
+        </tbody>
+      </table>
     </div>
-    <bugs />
-
+    <div class="row">
+      <bugs />
+    </div>
   </div>
 </template>
 
 <script>
   import Bugs from '@/components/Bugs.vue'
+  import BugsList from '@/components/BugsList.vue'
+
 
 
   export default {
@@ -21,6 +27,7 @@
     },
     components: {
       Bugs,
+      BugsList
     }
   }
 </script>

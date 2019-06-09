@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// @ts-ignore
 import Home from './views/Home.vue'
-import Bug from './views/Bug.vue'
+// @ts-ignore
+import BugDetails from './views/BugDetails.vue'
 
 Vue.use(Router)
 
@@ -13,9 +15,10 @@ export default new Router({
       component: Home
     },
     {
-      path: ':id',
-      name: 'bug',
-      component: Bug
+      path: '/:id',
+      name: 'bugs',
+      props: true,
+      component: BugDetails
     }
 
   ]

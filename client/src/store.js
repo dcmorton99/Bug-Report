@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from './router.js'
+
 
 
 const _api = axios.create({
@@ -36,8 +38,8 @@ export default new Vuex.Store({
 
     async getBugById({ commit, dispatch }, id) {
       try {
-        let res = await _api.get('id')
-        commit('setBug', res.data.results)
+        let res = await _api.get('/' + id)
+        router.push({ params: { id: res.data.results._id } })
       }
       catch (err) { console.error(err) }
     },
