@@ -15,9 +15,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/:id',
-      name: 'bugs',
-      props: true,
+      path: '/bug/BugDetails/:id',
+      name: 'BugDetails',
       component: BugDetails
     }
 

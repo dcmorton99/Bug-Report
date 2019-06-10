@@ -1,7 +1,12 @@
 <template>
-  <div class="home container-fluid">
-    <div class="row align content center">
-      <h1>Reported Bugs</h1>
+  <div class="home container-fluid" id="background-image">
+    <div class="row text-justify-center">
+      <div class="col ">
+        <h1>Codeworks Bug Report</h1>
+      </div>
+    </div>
+    <div class="row p-3">
+      <h2>Reported Bugs</h2>
       <table class="table table-hover">
         <tbody>
           <bugs-list />
@@ -31,3 +36,14 @@
     }
   }
 </script>
+
+<style>
+  #background-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>

@@ -14,7 +14,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bugs: [],
-    bug: {}
+    bug: []
 
   },
   mutations: {
@@ -22,10 +22,13 @@ export default new Vuex.Store({
       state.bugs = data
     },
 
-    setBug(state, id) {
-      state.bug = id
+    setBug(state, payload = []) {
+      state.bug = payload
     }
+
   },
+
+
 
   actions: {
     async getBugs({ commit, dispatch }) {
@@ -38,8 +41,8 @@ export default new Vuex.Store({
 
     async getBugById({ commit, dispatch }, id) {
       try {
-        let res = await _api.get('/' + id)
-        router.push({ params: { id: res.data.results._id } })
+        let res = await _api.get(id)
+        commit('setBug', res.data.results)
       }
       catch (err) { console.error(err) }
     },
@@ -53,6 +56,17 @@ export default new Vuex.Store({
       }
       catch (err) { console.error(err) }
     },
+    //i have no idea what to do here...
+    createNote({ commit, dispatch }, payload) {
+      try {
+        _api.post('', payload)
+          .then(res => {
+            dispatch('getNotes')
+          })
+      }
+      catch (err) { console.error(err) }
+    },
+
 
 
   }

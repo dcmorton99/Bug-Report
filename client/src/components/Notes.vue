@@ -20,6 +20,10 @@
           flagged: //no idea what to put here...
         }
       };
+    },
+    methods: {
+      createNote() {
+        this.$store.dispatch('createNote', this.newNote)
+      },
     }
-  }
 </script>

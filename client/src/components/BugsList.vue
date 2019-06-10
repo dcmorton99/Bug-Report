@@ -1,11 +1,15 @@
 <template>
-  <div class="bugs-list">
-    <tr v-for="bug in bugs" :key="bugs._id">
-      <th scope="row"></th>
-      <td>{{bug.title}}</td>
-      <td>{{bug.creator}}</td>
-      <td>{{bug.description}}</td>
-      <td>{{bug.createdAt}}</td>
+  <div>
+
+    <tr v-for="bug in bugs" :key="bugs._id" @click="selectBug">
+      <router-link :to="{name: 'BugDetails', params: {id: bug._id}}">
+        <th scope="row">
+        </th>
+        <td>{{bug.title}}</td>
+        <td>{{bug.creator}}</td>
+        <td>{{bug.description}}</td>
+        <td>{{bug.createdAt}}</td>
+      </router-link>
     </tr>
   </div>
 </template>
