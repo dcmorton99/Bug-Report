@@ -15,6 +15,24 @@
           </div>
         </div>
         <notes />
+        <div class="card" v-for="note in notes" :key="notes._id">
+          <div class="card-body">
+            <h5 class="card-title">{{note.creator}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{note.content}}</h6>
+
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Pending</a>
+                <a class="dropdown-item" href="#">Completed</a>
+                <a class="dropdown-item" href="#">Rejected</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
