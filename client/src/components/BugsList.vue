@@ -7,7 +7,8 @@
         <td>{{bug.creator}}</td>
         <td>{{bug.description}}</td>
         <td>{{new Date(bug.createdAt).toLocaleDateString()}}</td>
-        <td>{{bug.closed}}</td>
+        <td v-if="bug.closed == false">Open</td>
+        <td v-else>Closed</td>
       </router-link>
     </tr>
   </div>

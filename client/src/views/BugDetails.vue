@@ -12,8 +12,9 @@
             <h5 class="card-text">{{bug.description}}</h5>
             <h5 class="card-text">{{bug.creator}}</h5>
             <h5 class="card-text">{{new Date(bug.createdAt).toLocaleDateString()}}</h5>
-            <h5 class="card-text">Status: {{bug.closed}}</h5>
-            <button class="btn btn-success" @click="closeBug">Fixed?</button>
+            <h5 class="card-text" v-if="bug.closed == false">Status: Open</h5>
+            <h5 class="card-text" v-else>Status: Closed</h5>
+            <button class="btn btn-success" @click="closeBug" v-show="bug.closed == false">Fixed?</button>
           </div>
         </div>
         <div v-if="bug.closed === false">
@@ -25,18 +26,7 @@
                   <h5 class="card-title">{{note.creator}}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{note.content}}</h6>
                   <h6>Status: {{note.flagged}}</h6>
-                  <div class="dropdown m-2">
-                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pending
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Pending</a>
-                      <a class="dropdown-item" href="#">Completed</a>
-                    </div>
-                    <button class="btn-sm btn-warning m-2" @click="editNote">Edit Note</button>
-                    <button class="btn-sm btn-warning m-2" @click="deleteNote">Delete Note</button>
-                  </div>
+                  <button class="btn-sm btn-warning m-2" @click="deleteNote">Delete Note</button>
                 </div>
               </div>
             </div>
@@ -44,6 +34,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -80,11 +71,10 @@
       closeBug() {
         this.$store.dispatch('closeBug', this.$route.params.id)
       },
-      editNote() {
-        this.$store.dispatch('editNote')
-      },
-      closeNote() {
-        this.$store.dispatch('closeNote')
+
+      deleteNote() {
+        debugger
+        this.$store.dispatch('deleteNote', this.notes._id)
       }
     },
 
