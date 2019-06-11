@@ -78,7 +78,7 @@
 
     methods: {
       closeBug() {
-        this.$store.dispatch('closeBug', this.bug)
+        this.$store.dispatch('closeBug', this.$route.params.id)
       },
       editNote() {
         this.$store.dispatch('editNote')
