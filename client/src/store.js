@@ -12,7 +12,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bugs: [],
-    bug: [],
+    bug: {},
     notes: []
   },
   mutations: {
@@ -83,11 +83,11 @@ export default new Vuex.Store({
       } catch (error) { console.error(error) }
     },
 
-    async deleteNote({ commit, dispatch, state }, id) {
+    async deleteNote({ commit, dispatch, state }, id) {//yikes! the bug id is passing and not note id...
+      debugger
       try {
-        debugger
-        _api.delete(state.notes._id = id) //not sure what to put here
-        dispatch('getNotes', state.notes._id)
+        _api.delete(state.bug._id + "/notes/" + id) //not sure what to put here
+        dispatch('getNotes', state.bug._id)
       } catch (error) { console.error(error) }
     },
 

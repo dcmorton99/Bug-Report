@@ -26,7 +26,7 @@
                   <h5 class="card-title">{{note.creator}}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{note.content}}</h6>
                   <h6>Status: {{note.flagged}}</h6>
-                  <button class="btn-sm btn-warning m-2" @click="deleteNote">Delete Note</button>
+                  <button class="btn-sm btn-warning m-2" @click="deleteNote(note._id)">Delete Note</button>
                 </div>
               </div>
             </div>
@@ -72,9 +72,9 @@
         this.$store.dispatch('closeBug', this.$route.params.id)
       },
 
-      deleteNote() {
-        debugger
-        this.$store.dispatch('deleteNote', this.notes._id)
+      deleteNote(id) {
+
+        this.$store.dispatch('deleteNote', id)
       }
     },
 
