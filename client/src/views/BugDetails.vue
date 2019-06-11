@@ -12,7 +12,6 @@
             <h5 class="card-title">{{bug.description}}</h5>
             <h5 class="card-text">{{bug.creator}}</h5>
             <h5 class="card-text">{{bug.createdAt}}</h5>
-            <button class="btn btn-primary">Add Note</button>
           </div>
         </div>
         <notes />
@@ -22,30 +21,36 @@
 </template>
 
 <script>
-
+  import Notes from '@/components/Notes.vue'
 
   export default {
     name: "BugDetails",
     mounted() {
       this.$store.dispatch('getBugById', this.$route.params.id);
+      this.$store.dispatch('getNotes', this.$route.params.id);
+
       setTimeout(() => {
         if (!this.bug._id) {
           this.$router.push({ name: "home" });
         }
       }, 3000);
     },
+
     data() {
       return {};
     },
+
     computed: {
       bug() {
         return this.$store.state.bug;
+      },
+      notes() {
+        return this.$store.state.notes;
       }
     },
-    methods: {
-      // addNote() {
 
-      // }
+    components: {
+      Notes
     }
   };
 </script>

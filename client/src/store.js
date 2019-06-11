@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from './router.js'
-
 
 
 const _api = axios.create({
@@ -14,16 +12,21 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bugs: [],
-    bug: []
-
+    bug: [],
+    notes: []
   },
   mutations: {
+
     setBugs(state, data) {
       state.bugs = data
     },
 
     setBug(state, payload = []) {
       state.bug = payload
+    },
+
+    setNotes(state, payload) {
+      state.notes = payload
     }
 
   },
@@ -41,10 +44,17 @@ export default new Vuex.Store({
 
     async getBugById({ commit, dispatch }, id) {
       try {
-        let res = await _api.get(id)
+        let res = await _api.get('/' + id)
         commit('setBug', res.data.results)
       }
       catch (err) { console.error(err) }
+    },
+
+    async getNotes({ commit, dispatch }, id) {
+      try {
+        let res = await _api.get('/' + id + '/notes')
+        commit('setNotes', res.data.results)
+      } catch (err) { console.error(err) }
     },
 
     createBug({ commit, dispatch }, payload) {
@@ -56,18 +66,16 @@ export default new Vuex.Store({
       }
       catch (err) { console.error(err) }
     },
-    //i have no idea what to do here...
+
     createNote({ commit, dispatch }, payload) {
       try {
-        _api.post('', payload)
+        _api.post('/' + payload.bug + '/notes', payload)
           .then(res => {
-            dispatch('getNotes')
+            dispatch('getNotes', payload.bug)
           })
       }
       catch (err) { console.error(err) }
     },
-
-
 
   }
 })
