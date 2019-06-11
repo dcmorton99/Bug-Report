@@ -1,14 +1,13 @@
 <template>
   <div>
 
-    <tr v-for="bug in bugs" :key="bugs._id" @click="selectBug">
+    <tr v-for="bug in bugs" :key="bugs._id" @click="selectBug" :class="{closed: bug.closed == true}">
       <router-link :to="{name: 'BugDetails', params: {id: bug._id}}">
-        <th scope="row">
-        </th>
         <td>{{bug.title}}</td>
         <td>{{bug.creator}}</td>
         <td>{{bug.description}}</td>
-        <td>{{bug.createdAt}}</td>
+        <td>{{new Date(bug.createdAt).toLocaleDateString()}}</td>
+        <td>{{bug.closed}}</td>
       </router-link>
     </tr>
   </div>
@@ -34,7 +33,9 @@
 </script>
 
 <style>
-  li:hover {
-    background-color: yellow;
+  .closed {
+    background-color: rgb(211, 183, 130);
+    text-decoration: line-through;
+
   }
 </style>

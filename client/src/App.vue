@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Go Home!</router-link>
+      <router-link to="/">
+        <button class="btn btn-secondary">Go Home!</button>
+      </router-link>
     </div>
     <router-view />
   </div>

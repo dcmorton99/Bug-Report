@@ -77,5 +77,22 @@ export default new Vuex.Store({
       catch (err) { console.error(err) }
     },
 
+    closeBug({ commit, dispatch }, payload) {//not sure what to put here to change the bool value
+      try {
+        debugger
+        _api.delete('/' + payload.id, payload)
+          .then(res => {
+            dispatch('setBug', payload.id)
+          })
+      } catch (error) { console.error(error) }
+    },
+
+    async editNote({ commit, dispatch }, payload) {
+      try {
+        let res = await _api.put('/' + bug.id + '/notes' + id) //not sure what to put here
+      } catch (error) { console.error(error) }
+    }
+
+
   }
 })

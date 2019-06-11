@@ -4,7 +4,7 @@
     <form @submit.prevent="createNote">
       <input type="text" class="form-control" v-model="newNote.creator" placeholder="Let us know who you are">
       <input type="text" class="form-control" v-model="newNote.content" placeholder="What would you like us to know?">
-      <button class="btn btn-danger" type="submit">Add a note</button>
+      <button class="btn btn-danger m-3" type="submit">Add a note</button>
     </form>
   </div>
 </template>

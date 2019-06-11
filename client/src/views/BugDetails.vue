@@ -2,33 +2,42 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col bug-details">
-        <h1>This is the bug details view</h1>
-
         <div class="card">
           <div class="card-header">
-            {{bug.title}}
+            Bug Details
           </div>
           <div class="card-body">
-            <h5 class="card-title">{{bug.description}}</h5>
+            <h5 class="card-title">{{bug.title}}</h5>
+            <hr />
+            <h5 class="card-text">{{bug.description}}</h5>
             <h5 class="card-text">{{bug.creator}}</h5>
-            <h5 class="card-text">{{bug.createdAt}}</h5>
+            <h5 class="card-text">{{new Date(bug.createdAt).toLocaleDateString()}}</h5>
+            <h5 class="card-text">Status: {{bug.closed}}</h5>
+            <button class="btn btn-success" @click="closeBug">Fixed?</button>
           </div>
         </div>
-        <notes />
-        <div class="card" v-for="note in notes" :key="notes._id">
-          <div class="card-body">
-            <h5 class="card-title">{{note.creator}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{note.content}}</h6>
-
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Pending</a>
-                <a class="dropdown-item" href="#">Completed</a>
-                <a class="dropdown-item" href="#">Rejected</a>
+        <div v-if="bug.closed === false">
+          <notes />
+          <div class="row">
+            <div class="col-4">
+              <div class="card m-3" v-for="note in notes" :key="notes._id">
+                <div class="card-body">
+                  <h5 class="card-title">{{note.creator}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{note.content}}</h6>
+                  <h6>Status: {{note.flagged}}</h6>
+                  <div class="dropdown m-2">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Pending
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Pending</a>
+                      <a class="dropdown-item" href="#">Completed</a>
+                    </div>
+                    <button class="btn-sm btn-warning m-2" @click="editNote">Edit Note</button>
+                    <button class="btn-sm btn-warning m-2" @click="deleteNote">Delete Note</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -64,6 +73,18 @@
       },
       notes() {
         return this.$store.state.notes;
+      }
+    },
+
+    methods: {
+      closeBug() {
+        this.$store.dispatch('closeBug', this.bug)
+      },
+      editNote() {
+        this.$store.dispatch('editNote')
+      },
+      closeNote() {
+        this.$store.dispatch('closeNote')
       }
     },
 
